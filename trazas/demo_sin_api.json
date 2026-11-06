@@ -1,0 +1,282 @@
+{
+  "generado": "2026-11-06T14:45:48",
+  "modelo": "simulado-sin-api",
+  "recursion_limit": 10,
+  "turnos": [
+    {
+      "thread_id": "pedidos-102",
+      "pregunta": "¿Cuántos pedidos tuvo el cliente 102 y cuál fue el total?",
+      "llamadas_a_herramientas": 1,
+      "pasos": [
+        {
+          "tipo": "accion",
+          "herramienta": "buscar_pedidos",
+          "argumentos": {
+            "cliente_id": 102
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_pedidos",
+          "resultado": {
+            "cliente_id": 102,
+            "cliente": "Julián Pereyra",
+            "cantidad_pedidos": 3,
+            "total_gastado": 14500,
+            "pedidos": [
+              {
+                "id": 5012,
+                "fecha": "2026-10-28",
+                "total": 6500,
+                "estado": "en_camino"
+              },
+              {
+                "id": 5007,
+                "fecha": "2026-09-30",
+                "total": 4800,
+                "estado": "entregado"
+              },
+              {
+                "id": 5001,
+                "fecha": "2026-08-14",
+                "total": 3200,
+                "estado": "entregado"
+              }
+            ]
+          }
+        }
+      ],
+      "respuesta": "El cliente 102 (Julián Pereyra) tuvo 3 pedidos por un total de $14.500."
+    },
+    {
+      "thread_id": "pedidos-102",
+      "pregunta": "¿Y el último?",
+      "llamadas_a_herramientas": 0,
+      "pasos": [],
+      "respuesta": "El último pedido de Julián Pereyra es el #5012, del 28/10/2026, por $6.500. Estado: en camino."
+    },
+    {
+      "thread_id": "pedidos-102",
+      "pregunta": "¿En qué estado está el envío de ese pedido?",
+      "llamadas_a_herramientas": 2,
+      "pasos": [
+        {
+          "tipo": "accion",
+          "herramienta": "consultar_envio",
+          "argumentos": {
+            "pedido_id": 5012
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "consultar_envio",
+          "resultado": {
+            "error": "TEMPORAL: el servicio de seguimiento de Correo Argentino no respondió (timeout). Reintentá la consulta."
+          }
+        },
+        {
+          "tipo": "accion",
+          "herramienta": "consultar_envio",
+          "argumentos": {
+            "pedido_id": 5012
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "consultar_envio",
+          "resultado": {
+            "pedido_id": 5012,
+            "empresa": "Correo Argentino",
+            "codigo_seguimiento": "CA-000417762AR",
+            "estado": "en_camino",
+            "ultima_novedad": "En centro de distribución Rosario (05/11)",
+            "entrega_estimada": "2026-11-08"
+          }
+        }
+      ],
+      "respuesta": "El pedido #5012 va por Correo Argentino (seguimiento CA-000417762AR). Estado: en camino. Última novedad: En centro de distribución Rosario (05/11). Entrega estimada: 08/11/2026."
+    },
+    {
+      "thread_id": "envio-julian",
+      "pregunta": "¿Dónde está el último pedido de Julián Pereyra y cuándo llega?",
+      "llamadas_a_herramientas": 3,
+      "pasos": [
+        {
+          "tipo": "accion",
+          "herramienta": "buscar_cliente",
+          "argumentos": {
+            "nombre": "Julián Pereyra"
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_cliente",
+          "resultado": {
+            "coincidencias": 1,
+            "clientes": [
+              {
+                "id": 102,
+                "nombre": "Julián Pereyra",
+                "ciudad": "Rosario"
+              }
+            ]
+          }
+        },
+        {
+          "tipo": "accion",
+          "herramienta": "buscar_pedidos",
+          "argumentos": {
+            "cliente_id": 102
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_pedidos",
+          "resultado": {
+            "cliente_id": 102,
+            "cliente": "Julián Pereyra",
+            "cantidad_pedidos": 3,
+            "total_gastado": 14500,
+            "pedidos": [
+              {
+                "id": 5012,
+                "fecha": "2026-10-28",
+                "total": 6500,
+                "estado": "en_camino"
+              },
+              {
+                "id": 5007,
+                "fecha": "2026-09-30",
+                "total": 4800,
+                "estado": "entregado"
+              },
+              {
+                "id": 5001,
+                "fecha": "2026-08-14",
+                "total": 3200,
+                "estado": "entregado"
+              }
+            ]
+          }
+        },
+        {
+          "tipo": "accion",
+          "herramienta": "consultar_envio",
+          "argumentos": {
+            "pedido_id": 5012
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "consultar_envio",
+          "resultado": {
+            "pedido_id": 5012,
+            "empresa": "Correo Argentino",
+            "codigo_seguimiento": "CA-000417762AR",
+            "estado": "en_camino",
+            "ultima_novedad": "En centro de distribución Rosario (05/11)",
+            "entrega_estimada": "2026-11-08"
+          }
+        }
+      ],
+      "respuesta": "El pedido #5012 va por Correo Argentino (seguimiento CA-000417762AR). Estado: en camino. Última novedad: En centro de distribución Rosario (05/11). Entrega estimada: 08/11/2026."
+    },
+    {
+      "thread_id": "envio-lucia",
+      "pregunta": "¿En qué estado está el envío del último pedido de Lucía Fernández?",
+      "llamadas_a_herramientas": 1,
+      "pasos": [
+        {
+          "tipo": "accion",
+          "herramienta": "buscar_cliente",
+          "argumentos": {
+            "nombre": "Lucía Fernández"
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_cliente",
+          "resultado": {
+            "coincidencias": 2,
+            "clientes": [
+              {
+                "id": 103,
+                "nombre": "Lucía Fernández",
+                "ciudad": "Buenos Aires"
+              },
+              {
+                "id": 104,
+                "nombre": "Lucía Fernández",
+                "ciudad": "Mendoza"
+              }
+            ]
+          }
+        }
+      ],
+      "respuesta": "Encontré 2 clientes llamados Lucía Fernández: una de Buenos Aires (cliente 103) y una de Mendoza (cliente 104). ¿De cuál me hablás?"
+    },
+    {
+      "thread_id": "envio-lucia",
+      "pregunta": "La de Mendoza",
+      "llamadas_a_herramientas": 2,
+      "pasos": [
+        {
+          "tipo": "accion",
+          "herramienta": "buscar_pedidos",
+          "argumentos": {
+            "cliente_id": 104
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_pedidos",
+          "resultado": {
+            "cliente_id": 104,
+            "cliente": "Lucía Fernández",
+            "cantidad_pedidos": 2,
+            "total_gastado": 36700,
+            "pedidos": [
+              {
+                "id": 5013,
+                "fecha": "2026-11-02",
+                "total": 21300,
+                "estado": "preparando"
+              },
+              {
+                "id": 5008,
+                "fecha": "2026-10-02",
+                "total": 15400,
+                "estado": "entregado"
+              }
+            ]
+          }
+        },
+        {
+          "tipo": "accion",
+          "herramienta": "consultar_envio",
+          "argumentos": {
+            "pedido_id": 5013
+          }
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "consultar_envio",
+          "resultado": {
+            "pedido_id": 5013,
+            "estado_pedido": "preparando",
+            "envio": null,
+            "aviso": "El pedido todavía se está preparando y no tiene envío asignado."
+          }
+        }
+      ],
+      "respuesta": "El último pedido de Lucía Fernández es el #5013, del 02/11/2026, por $21.300. El pedido todavía se está preparando y no tiene envío asignado."
+    },
+    {
+      "thread_id": "thread-nuevo",
+      "pregunta": "¿Y el último?",
+      "llamadas_a_herramientas": 0,
+      "pasos": [],
+      "respuesta": "¿De qué cliente o pedido me hablás? Pasame el nombre o el número de cliente."
+    }
+  ]
+}
